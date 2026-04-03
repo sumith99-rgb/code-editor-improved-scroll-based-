@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexCode — Access Terminal</title>
+    <meta name="description" content="Login or sign up to NexCode, the futuristic multi-language code editor.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <canvas id="cursorTrail"></canvas>
+
+    <!-- Background Canvas -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Scan Lines Overlay -->
+    <div class="scanlines"></div>
+
+    <!-- Main Auth Container -->
+    <main class="auth-page">
+
+        <!-- Logo / Back Link -->
+        <a href="index.html" class="back-link" id="backLink">
+            <span class="back-arrow">←</span>
+            <span class="back-label">NEX<span class="cyan">CODE</span></span>
+        </a>
+
+        <!-- Auth Card -->
+        <div class="auth-card glass" id="authCard">
+            <div class="card-border-glow"></div>
+            <div class="card-corner tl"></div><div class="card-corner tr"></div>
+            <div class="card-corner bl"></div><div class="card-corner br"></div>
+
+            <!-- Terminal Header -->
+            <div class="auth-terminal-bar">
+                <div class="term-dots">
+                    <span class="td r"></span><span class="td y"></span><span class="td g"></span>
+                </div>
+                <span class="term-title" id="termTitle">access_terminal — login</span>
+            </div>
+
+            <!-- Tab Switcher -->
+            <div class="auth-tabs">
+                <button class="tab active" id="tabLogin" data-tab="login">
+                    <span class="tab-icon">▸</span> Login
+                </button>
+                <button class="tab" id="tabSignup" data-tab="signup">
+                    <span class="tab-icon">▸</span> Sign Up
+                </button>
+            </div>
+
+            <!-- Login Form -->
+            <form class="auth-form" id="loginForm">
+                <div class="input-group">
+                    <label for="loginUser">
+                        <span class="label-icon">&gt;</span> Username
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="loginUser" placeholder="enter_username" autocomplete="username" required>
+                        <div class="input-glow"></div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="loginPass">
+                        <span class="label-icon">&gt;</span> Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="password" id="loginPass" placeholder="••••••••" autocomplete="current-password" required>
+                        <div class="input-glow"></div>
+                    </div>
+                </div>
+                <div class="auth-message" id="loginMsg"></div>
+                <button type="submit" class="auth-btn" id="loginBtn">
+                    <span class="btn-text">Authenticate</span>
+                    <span class="btn-arrow">→</span>
+                    <div class="btn-ripple"></div>
+                    <div class="btn-shine"></div>
+                </button>
+            </form>
+
+            <!-- Signup Form -->
+            <form class="auth-form hidden" id="signupForm">
+                <div class="input-group">
+                    <label for="signupUser">
+                        <span class="label-icon">&gt;</span> Username
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="text" id="signupUser" placeholder="choose_username" autocomplete="username" required>
+                        <div class="input-glow"></div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="signupEmail">
+                        <span class="label-icon">&gt;</span> Email
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="email" id="signupEmail" placeholder="user@nexcode.dev" autocomplete="email" required>
+                        <div class="input-glow"></div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="signupPass">
+                        <span class="label-icon">&gt;</span> Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="password" id="signupPass" placeholder="min 6 characters" autocomplete="new-password" required minlength="6">
+                        <div class="input-glow"></div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="signupConfirm">
+                        <span class="label-icon">&gt;</span> Confirm Password
+                    </label>
+                    <div class="input-wrapper">
+                        <input type="password" id="signupConfirm" placeholder="re-enter password" autocomplete="new-password" required minlength="6">
+                        <div class="input-glow"></div>
+                    </div>
+                </div>
+                <div class="auth-message" id="signupMsg"></div>
+                <button type="submit" class="auth-btn" id="signupBtn">
+                    <span class="btn-text">Create Account</span>
+                    <span class="btn-arrow">→</span>
+                    <div class="btn-ripple"></div>
+                    <div class="btn-shine"></div>
+                </button>
+            </form>
+
+            <!-- Footer -->
+            <div class="auth-footer">
+                <span class="auth-status">
+                    <span class="status-dot"></span>
+                    System Online
+                </span>
+                <span class="auth-ver">v2.0.6</span>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/login.js"></script>
+</body>
+</html>

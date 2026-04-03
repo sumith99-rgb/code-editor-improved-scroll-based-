@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexCode — The Future of Code</title>
+    <meta name="description" content="NexCode: A futuristic, multi-language web-based code editor.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+    <canvas id="cursorTrail"></canvas>
+
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <div class="boot-container">
+            <div class="boot-logo">NEX<span>CODE</span></div>
+            <div class="boot-progress-track"><div class="boot-progress-bar" id="bootBar"></div></div>
+            <div class="boot-terminal" id="bootTerminal"><p>> booting nexcode kernel...</p></div>
+        </div>
+        <div class="preloader-grid"></div>
+    </div>
+
+    <!-- Background Canvas (fixed, persists everywhere) -->
+    <canvas id="bgCanvas"></canvas>
+
+    <!-- Scroll Progress -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- 3D PERSPECTIVE WRAPPER — everything is in 3D space -->
+    <div class="world" id="world">
+
+        <!-- ===== SECTION 1: HERO (Sticky + Zoom-Through) ===== -->
+        <section class="s s-hero" id="s-hero">
+            <div class="hero-depth-layer" id="heroLayer">
+                <div class="hero-card glass" id="heroCard">
+                    <div class="card-border-glow"></div>
+                    <div class="card-corner tl"></div><div class="card-corner tr"></div>
+                    <div class="card-corner bl"></div><div class="card-corner br"></div>
+                    <p class="pre-title">> <span class="typing-text"></span><span class="caret">_</span></p>
+                    <h1 class="title"><span class="title-nex">NEX</span><span class="title-code">CODE</span></h1>
+                    <p class="subtitle">Write. Compile. Execute.<br><span class="glow-text">The future of coding is here.</span></p>
+                    <div class="scroll-hint"><span>Scroll to dive in</span><div class="scroll-arrow"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 2: FEATURES (Horizontal Scroll) ===== -->
+        <section class="s s-features" id="s-features">
+            <div class="features-track" id="featuresTrack">
+                <div class="ft-slide ft-intro">
+                    <h2 class="big-title"><span class="accent">//</span> What Makes<br>NexCode <span class="glow-text">Different</span></h2>
+                </div>
+                <div class="ft-slide">
+                    <div class="f3d-card glass">
+                        <div class="f3d-icon">⚡</div>
+                        <h3>Instant Execution</h3>
+                        <p>Compile and run code in under a second. No waiting, no lag — just pure speed.</p>
+                    </div>
+                </div>
+                <div class="ft-slide">
+                    <div class="f3d-card glass">
+                        <div class="f3d-icon">🧠</div>
+                        <h3>Smart Editor</h3>
+                        <p>Auto-indentation, bracket matching, and intelligent formatting built right in.</p>
+                    </div>
+                </div>
+                <div class="ft-slide">
+                    <div class="f3d-card glass">
+                        <div class="f3d-icon">💾</div>
+                        <h3>Cloud Save</h3>
+                        <p>Your code is saved to your profile. Access it from anywhere, anytime.</p>
+                    </div>
+                </div>
+                <div class="ft-slide">
+                    <div class="f3d-card glass">
+                        <div class="f3d-icon">🌗</div>
+                        <h3>Dark Mode UI</h3>
+                        <p>A stunning VS Code-inspired dark interface for long coding sessions.</p>
+                    </div>
+                </div>
+                <div class="ft-slide">
+                    <div class="f3d-card glass">
+                        <div class="f3d-icon">🔒</div>
+                        <h3>Secure Sandbox</h3>
+                        <p>All code runs in an isolated environment. Safe execution guaranteed.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 3: LANGUAGES (3D Rotating Cards) ===== -->
+        <section class="s s-langs" id="s-langs">
+            <div class="langs-inner">
+                <h2 class="section-title"><span class="accent">//</span> Supported Languages</h2>
+                <p class="section-sub">One editor. Five languages. Zero configuration.</p>
+                <div class="lang-carousel" id="langCarousel">
+                    <div class="lang-3d glass" style="--i:0; --glow:#e44d26">
+                        <div class="lang-3d-face front">
+                            <div class="l-icon">&lt;/&gt;</div><h3>HTML + CSS + JS</h3><span class="l-tag">Frontend</span>
+                        </div>
+                    </div>
+                    <div class="lang-3d glass" style="--i:1; --glow:#f89820">
+                        <div class="lang-3d-face front">
+                            <div class="l-icon">☕</div><h3>Java</h3><span class="l-tag">Compiled</span>
+                        </div>
+                    </div>
+                    <div class="lang-3d glass" style="--i:2; --glow:#00599c">
+                        <div class="lang-3d-face front">
+                            <div class="l-icon">C</div><h3>C Language</h3><span class="l-tag">Low-Level</span>
+                        </div>
+                    </div>
+                    <div class="lang-3d glass" style="--i:3; --glow:#5e5086">
+                        <div class="lang-3d-face front">
+                            <div class="l-icon">λ</div><h3>Haskell</h3><span class="l-tag">Functional</span>
+                        </div>
+                    </div>
+                    <div class="lang-3d glass" style="--i:4; --glow:#264de4">
+                        <div class="lang-3d-face front">
+                            <div class="l-icon">#</div><h3>CSS</h3><span class="l-tag">Styling</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 4: DEMO (Flies in from depth) ===== -->
+        <section class="s s-demo" id="s-demo">
+            <div class="demo-3d-wrapper" id="demoWrapper">
+                <h2 class="section-title"><span class="accent">//</span> Editor Preview</h2>
+                <div class="demo-window glass">
+                    <div class="demo-titlebar">
+                        <div class="demo-dots"><span class="d-r"></span><span class="d-y"></span><span class="d-g"></span></div>
+                        <span class="demo-filename">main.js — NexCode</span>
+                        <span class="demo-run">▶ Run</span>
+                    </div>
+                    <div class="demo-body">
+                        <div class="demo-editor">
+                            <div class="demo-lines"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span></div>
+                            <pre class="demo-code"><span class="kw">function</span> <span class="fn">greet</span>(<span class="pm">name</span>) {
+  <span class="kw">const</span> msg = <span class="st">`Hello, ${</span><span class="pm">name</span><span class="st">}!`</span>;
+  <span class="fn">console</span>.<span class="fn">log</span>(msg);
+  <span class="kw">return</span> msg;
+}
+
+<span class="cm">// Start coding your future</span>
+<span class="fn">greet</span>(<span class="st">"World"</span>);</pre>
+                        </div>
+                        <div class="demo-output">
+                            <div class="out-hdr">OUTPUT</div>
+                            <p class="out-line"><span class="out-p">></span> Hello, World!</p>
+                            <p class="out-ok">✓ Execution completed in 0.02s</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== SECTION 5: CTA ===== -->
+        <section class="s s-cta" id="s-cta">
+            <div class="cta-3d" id="ctaSection">
+                <h2 class="cta-title">Ready to Code the <span class="glow-text">Future</span>?</h2>
+                <p class="cta-sub">Join NexCode and start writing, compiling, and executing code in seconds.</p>
+                <div class="cta-stats">
+                    <div class="stat"><span class="stat-num" data-target="5">0</span><span class="stat-label">Languages</span></div>
+                    <div class="stat-divider"></div>
+                    <div class="stat"><span class="stat-num">&lt;1s</span><span class="stat-label">Execution</span></div>
+                    <div class="stat-divider"></div>
+                    <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Possibilities</span></div>
+                </div>
+                <a href="login.html" class="cta-btn" id="ctaBtn">
+                    <span class="cta-text">Launch Editor</span><span class="cta-arrow">→</span>
+                    <div class="cta-ripple"></div><div class="cta-shine"></div>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

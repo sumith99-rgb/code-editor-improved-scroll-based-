@@ -1,0 +1,18 @@
+{
+  "name": "nexcode",
+  "version": "1.0.0",
+  "description": "NexCode — Futuristic multi-language web code editor",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": ["code-editor", "nexcode"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "express": "^5.2.1"
+  }
+}

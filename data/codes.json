@@ -1,0 +1,44 @@
+{
+  "backend_user_javascript": {
+    "code": "// NexCode JavaScript Editor\nfunction fibonacci(n) {\n    if (n <= 1) return n;\n    return fibonacci(n - 1) + fibonacci(n - 2);\n}\n\nfor (let i = 0; i < 10; i++) {\n    console.log(`fibonacci(${i}) = ${fibonacci(i)}`);\n}",
+    "lang": "javascript",
+    "fileName": "untitled",
+    "savedAt": 1774685915356
+  },
+  "demo_css": {
+    "code": "/* NexCode CSS Editor */\nbody {\n    margin: 0;\n    font-family: 'Segoe UI', sans-serif;\n    background: linear-gradient(135deg, #1a1a2e, #16213e);\n    color: #e8eaed;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    min-height: 100vh;\n}\n\nh1 {\n    font-size: 3rem;\n    color: #00f0ff;\n    text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);\n}",
+    "lang": "css",
+    "fileName": "untitled",
+    "savedAt": 1774687294737
+  },
+  "demo_haskell": {
+    "code": "-- NexCode Haskell Editor\nmain :: IO ()\nmain = do\n    putStrLn \"Hello from NexCode!\"\n    mapM_ (\\i -> putStrLn $ \"Count: \" ++ show i) [1..5]",
+    "lang": "haskell",
+    "fileName": "untitled",
+    "savedAt": 1774687298158
+  },
+  "demo_javascript": {
+    "code": "",
+    "lang": "javascript",
+    "fileName": "untitled",
+    "savedAt": 1774687314634
+  },
+  "sumith_javascript": {
+    "code": "// NexCode JavaScript Editor\nfunction fibonacci(n) {\n    if (n <= 1) return n;\n    return fibonacci(n - 1) + fibonacci(n - 2);\n}\n\nfor (let i = 0; i < 10; i++) {\n    console.log(`fibonacci(${i}) = ${fibonacci(i)}`);\n}",
+    "lang": "javascript",
+    "fileName": "untitled",
+    "savedAt": 1774688279036
+  },
+  "sandeep_javascript_my_script.js": {
+    "code": "// NexCode JavaScript Editor\nfunction fibonacci(n) {\n    if (n <= 1) return n;\n    return fibonacci(n - 1) + fibonacci(n - 2);\n}\n\nfor (let i = 0; i < 10; i++) {\n    console.log(`fibonacci(${i}) = ${fibonacci(i)}`);\n}",
+    "lang": "javascript",
+    "fileName": "my_script.js",
+    "savedAt": 1774688707014
+  },
+  "sandeep_javascript_sumit.js": {
+    "code": "// NexCode JavaScript Editor\nfunction fibonacci(n) {\n    if (n <= 1) return n;\n    return fibonacci(n - 1) + fibonacci(n - 2);\n}\n\nfor (let i = 0; i < 10; i++) {\n    console.log(`fibonacci(${i}) = ${fibonacci(i)}`);\n}",
+    "lang": "javascript",
+    "fileName": "sumit.js",
+    "savedAt": 1774875019272
+  }
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexCode — Editor</title>
+    <meta name="description" content="NexCode multi-language code editor workspace.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/editor.css">
+</head>
+<body>
+
+    <!-- ============ TOP BAR ============ -->
+    <header class="topbar" id="topbar">
+        <div class="topbar-left">
+            <a href="index.html" class="logo">NEX<span class="cyan">CODE</span></a>
+            <div class="separator"></div>
+            <div class="file-info">
+                <span class="file-icon">◆</span>
+                <span class="file-name" id="fileName">untitled</span>
+                <span class="file-ext" id="fileExt">.js</span>
+            </div>
+        </div>
+        <div class="topbar-center">
+            <div class="lang-selector" id="langSelector">
+                <button class="lang-btn" id="langBtn">
+                    <span class="lang-dot" id="langDot"></span>
+                    <span class="lang-name" id="langName">JavaScript</span>
+                    <span class="lang-arrow">▾</span>
+                </button>
+                <div class="lang-dropdown" id="langDropdown">
+                    <div class="lang-option active" data-lang="htmlcssjs" data-ext=".html" data-color="#e44d26">
+                        <span class="lo-dot" style="--c:#e44d26"></span> HTML + CSS + JS
+                    </div>
+                    <div class="lang-option" data-lang="css" data-ext=".css" data-color="#264de4">
+                        <span class="lo-dot" style="--c:#264de4"></span> CSS
+                    </div>
+                    <div class="lang-option" data-lang="javascript" data-ext=".js" data-color="#f7df1e">
+                        <span class="lo-dot" style="--c:#f7df1e"></span> JavaScript
+                    </div>
+                    <div class="lang-option" data-lang="java" data-ext=".java" data-color="#f89820">
+                        <span class="lo-dot" style="--c:#f89820"></span> Java
+                    </div>
+                    <div class="lang-option" data-lang="c" data-ext=".c" data-color="#00599c">
+                        <span class="lo-dot" style="--c:#00599c"></span> C
+                    </div>
+                    <div class="lang-option" data-lang="haskell" data-ext=".hs" data-color="#5e5086">
+                        <span class="lo-dot" style="--c:#5e5086"></span> Haskell
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="topbar-right">
+            <button class="action-btn dash-btn" id="dashBtn" title="My Codes">
+                <span class="action-icon">📁</span> My Codes
+            </button>
+            <button class="action-btn save-btn" id="saveBtn" title="Save Code">
+                <span class="action-icon">💾</span> Save
+            </button>
+            <button class="action-btn run-btn" id="runBtn" title="Run Code (Ctrl+Enter)">
+                <span class="action-icon">▶</span> Run
+            </button>
+            <div class="separator"></div>
+            <div class="user-badge" id="userBadge">
+                <span class="user-avatar" id="userAvatar">U</span>
+                <span class="user-name" id="userName">User</span>
+            </div>
+            <button class="logout-btn" id="logoutBtn" title="Logout">⏻</button>
+        </div>
+    </header>
+
+    <!-- ============ MAIN WORKSPACE ============ -->
+    <main class="workspace" id="workspace">
+
+        <!-- === EDITOR PANEL === -->
+        <div class="panel panel-editor" id="panelEditor">
+            <div class="panel-header">
+                <span class="panel-label">EDITOR</span>
+                <div class="panel-actions">
+                    <button class="pa-btn" id="wrapBtn" title="Toggle Word Wrap">↩</button>
+                    <button class="pa-btn" id="clearBtn" title="Clear Code">✕</button>
+                </div>
+            </div>
+            <div class="editor-container" id="editorContainer">
+                <div class="line-numbers" id="lineNumbers"></div>
+                <textarea class="code-input" id="codeInput" spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="// Start coding here..."></textarea>
+            </div>
+            <div class="editor-footer">
+                <span class="ef-info" id="cursorPos">Ln 1, Col 1</span>
+                <span class="ef-info" id="charCount">0 chars</span>
+                <span class="ef-info" id="langIndicator">JavaScript</span>
+            </div>
+        </div>
+
+        <!-- === RESIZE HANDLE === -->
+        <div class="resize-handle" id="resizeHandle">
+            <div class="resize-grip"></div>
+        </div>
+
+        <!-- === OUTPUT PANEL === -->
+        <div class="panel panel-output" id="panelOutput">
+            <div class="panel-header">
+                <span class="panel-label">OUTPUT</span>
+                <div class="output-tabs">
+                    <button class="out-tab active" id="tabConsole" data-target="console">Console</button>
+                    <button class="out-tab" id="tabPreview" data-target="preview">Preview</button>
+                </div>
+                <div class="panel-actions">
+                    <button class="pa-btn" id="clearOutput" title="Clear Output">✕</button>
+                </div>
+            </div>
+            <!-- Console Output -->
+            <div class="output-view active" id="viewConsole">
+                <div class="console-output" id="consoleOutput">
+                    <p class="console-welcome">
+                        <span class="cw-prompt">NexCode></span> Ready. Select a language and start coding.
+                    </p>
+                </div>
+            </div>
+            <!-- Preview (iframe for HTML/CSS/JS) -->
+            <div class="output-view" id="viewPreview">
+                <iframe class="preview-frame" id="previewFrame" sandbox="allow-scripts allow-same-origin"></iframe>
+            </div>
+            <div class="output-footer">
+                <span class="of-status" id="outputStatus">
+                    <span class="status-dot green"></span> Ready
+                </span>
+                <span class="of-time" id="outputTime"></span>
+            </div>
+        </div>
+    </main>
+
+    <!-- ============ SAVED CODES MODAL ============ -->
+    <div class="modal-overlay" id="dashboardModal">
+        <div class="modal-card glass">
+            <div class="modal-header">
+                <h2>📁 My Saved Codes</h2>
+                <button class="modal-close" id="closeDashBtn">✕</button>
+            </div>
+            <div class="modal-body">
+                <div class="codes-grid" id="codesGrid">
+                    <!-- Cards will be dynamically injected here -->
+                    <div class="loading-codes">Loading your snippets...</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============ RENAME MODAL ============ -->
+    <div class="modal-overlay" id="renameModal">
+        <div class="modal-card mini-modal glass">
+            <div class="modal-header">
+                <h2>✏️ Name Your Snippet</h2>
+                <button class="modal-close" id="closeRenameBtn">✕</button>
+            </div>
+            <div class="modal-body rename-body">
+                <p class="rename-desc">Enter a powerful name for your code.</p>
+                <input type="text" id="renameInput" class="custom-input" placeholder="e.g. quantum_matrix_v1" autocomplete="off" spellcheck="false">
+                <div class="rename-actions">
+                    <button class="action-btn cancel-btn" id="cancelRenameBtn">Cancel</button>
+                    <button class="action-btn confirm-btn" id="confirmRenameBtn">Save Code</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/editor.js"></script>
+</body>
+</html>
